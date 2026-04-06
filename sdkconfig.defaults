@@ -1,0 +1,48 @@
+# sdkconfig.defaults – Elegoo Smart Robot Car V4.0 (ESP32-S3 Camera)
+#
+# These defaults are applied when running `idf.py set-target esp32s3` for
+# the first time, or when `idf.py fullclean` is followed by a rebuild.
+# They configure the 8 MB Octal PSRAM required for VGA camera streaming.
+#
+# To apply after a fresh clone:
+#   idf.py set-target esp32s3
+#   idf.py menuconfig        (verify/adjust Wi-Fi credentials)
+#   idf.py build flash monitor
+
+# ── Target ────────────────────────────────────────────────────────────────────
+CONFIG_IDF_TARGET="esp32s3"
+
+# ── External SPI RAM (PSRAM) ──────────────────────────────────────────────────
+# Enable support for external, SPI-connected RAM
+CONFIG_ESP32S3_SPIRAM_SUPPORT=y
+
+# Select Octal Mode PSRAM (required for the 8 MB R8 variant used on this board)
+CONFIG_SPIRAM_MODE_OCT=y
+
+# Set PSRAM clock to 80 MHz for optimal video-streaming throughput
+CONFIG_SPIRAM_SPEED_80M=y
+
+# Allow the heap allocator to use PSRAM for large allocations (e.g. frame buffers)
+CONFIG_SPIRAM_USE_MALLOC=y
+
+# Minimum allocation size that triggers PSRAM use (32 KB)
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=32768
+
+# Reserve PSRAM for internal use by the ESP-IDF stack/heap
+CONFIG_SPIRAM_TRY_ALLOCATE_WIFI_LWIP=y
+
+# ── Flash ─────────────────────────────────────────────────────────────────────
+# 8 MB flash is standard on these modules
+CONFIG_ESPTOOLPY_FLASHSIZE_8MB=y
+CONFIG_PARTITION_TABLE_CUSTOM=n
+CONFIG_PARTITION_TABLE_SINGLE_APP=y
+
+# ── Wi-Fi ─────────────────────────────────────────────────────────────────────
+# Wi-Fi credentials are set here as placeholders; override in menuconfig or
+# via CONFIG_WIFI_SSID / CONFIG_WIFI_PASSWORD environment variables at build time.
+CONFIG_WIFI_SSID="your_ssid"
+CONFIG_WIFI_PASSWORD="your_password"
+
+# ── Camera / HTTP ─────────────────────────────────────────────────────────────
+# Increase the HTTP server stack size to handle MJPEG streaming
+CONFIG_HTTPD_MAX_REQ_HDR_LEN=1024
