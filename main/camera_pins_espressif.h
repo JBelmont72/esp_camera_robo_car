@@ -2,58 +2,6 @@
 // main/camera_pins.h
 #pragma once
 
-
-// camera_pins.h
-// Elegoo Smart Robot Car V4.0 Camera Pin Mapping
-// Ensure PSRAM is enabled for VGA streaming (idf.py menuconfig)
-// Set xclk_freq_hz = 20000000 in camera_config_t
-
-#define CAM_PIN_PWDN    32  // Power down
-#define CAM_PIN_RESET   -1  // Hardwired, not used
-#define CAM_PIN_XCLK    0   // External clock
-#define CAM_PIN_SIOD    26  // I2C SDA
-#define CAM_PIN_SIOC    27  // I2C SCL
-
-#define CAM_PIN_D7      35
-#define CAM_PIN_D6      34
-#define CAM_PIN_D5      39
-#define CAM_PIN_D4      36
-#define CAM_PIN_D3      21
-#define CAM_PIN_D2      19
-#define CAM_PIN_D1      18
-#define CAM_PIN_D0      5
-
-#define CAM_PIN_VSYNC   25
-#define CAM_PIN_HREF    23
-#define CAM_PIN_PCLK    22
-
-// Optional: Onboard LED flash
-#define CAM_PIN_LED     4
-
-// Example camera_config_t usage:
-// .xclk_freq_hz = 20000000,
-// .pin_pwdn     = CAM_PIN_PWDN,
-// .pin_reset    = CAM_PIN_RESET,
-// .pin_xclk     = CAM_PIN_XCLK,
-// .pin_sccb_sda = CAM_PIN_SIOD,
-// .pin_sccb_scl = CAM_PIN_SIOC,
-// .pin_d7       = CAM_PIN_D7,
-// .pin_d6       = CAM_PIN_D6,
-// .pin_d5       = CAM_PIN_D5,
-// .pin_d4       = CAM_PIN_D4,
-// .pin_d3       = CAM_PIN_D3,
-// .pin_d2       = CAM_PIN_D2,
-// .pin_d1       = CAM_PIN_D1,
-// .pin_d0       = CAM_PIN_D0,
-// .pin_vsync    = CAM_PIN_VSYNC,
-// .pin_href     = CAM_PIN_HREF,
-// .pin_pclk     = CAM_PIN_PCLK,
-
-
-
-
-/*
-
 //
 // Pin definitions for ESP32-S3-EYE v2.2
 //
@@ -96,7 +44,7 @@
 #define SIOC_GPIO_NUM   CAM_PIN_SIOC
 #define PWDN_GPIO_NUM   CAM_PIN_PWDN
 #define RESET_GPIO_NUM  CAM_PIN_RESET
-*/
+
 
 /*
 // main/camera_pins.h
