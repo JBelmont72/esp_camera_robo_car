@@ -12,17 +12,24 @@ static const char *TAG = "MAIN_APP";
 
 void app_main(void)
 {
+    esp_err_t err;
+
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-    ESP_ERROR_CHECK(camera_init_vga());   // VGA this works great
+    err = camera_init_vga();
+    if (err != ESP_OK)
+    {
+        ESP_LOGE(TAG, "Camera init failed in app_main: %s", esp_err_to_name(err));
+        return;
+    }
+    // VGA this works great
     // ESP_ERROR_CHECK(camera_init_qvga()); // QVGA
-    
-    ESP_LOGI(TAG, "Initializing camera (VGA test)...");
-    //ESP_ERROR_CHECK(camera_init_svga());
-    
-    ESP_LOGI(TAG, "Initializing camera...");
 
+    ESP_LOGI(TAG, "Initializing camera (VGA test)...");
+    // ESP_ERROR_CHECK(camera_init_svga());
+
+    ESP_LOGI(TAG, "Initializing camera...");
 
     ESP_LOGI(TAG, "Starting Wi-Fi...");
     ESP_ERROR_CHECK(wifi_init_sta("SpectrumSetup-41", "leastdinner914"));
@@ -32,4 +39,3 @@ void app_main(void)
 
     ESP_LOGI(TAG, "System ready");
 }
-
