@@ -6,6 +6,15 @@ idf_component_register(
         "http_stream.c"
     INCLUDE_DIRS
         "."
-    REQUIRES esp_netif esp_wifi esp_event nvs_flash esp_system log esp_http_server esp32-camera
-    PRIV_REQUIRES esp_driver_gpio
+    REQUIRES
+        esp_netif
+        esp_wifi
+        esp_event
+        nvs_flash
+        esp_system
+        log
+        esp_http_server
+        esp32-camera
+    PRIV_REQUIRES
+        driver
 )
