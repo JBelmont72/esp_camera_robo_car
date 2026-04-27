@@ -1,151 +1,54 @@
-
 // main/camera_pins.h
 #pragma once
 
-
-// camera_pins.h
-// Elegoo Smart Robot Car V4.0 Camera Pin Mapping
-// Ensure PSRAM is enabled for VGA streaming (idf.py menuconfig)
-// Set xclk_freq_hz = 20000000 in camera_config_t
-
-#define CAM_PIN_PWDN    32  // Power down
-#define CAM_PIN_RESET   -1  // Hardwired, not used
-#define CAM_PIN_XCLK    0   // External clock
-#define CAM_PIN_SIOD    26  // I2C SDA
-#define CAM_PIN_SIOC    27  // I2C SCL
-
-#define CAM_PIN_D7      35
-#define CAM_PIN_D6      34
-#define CAM_PIN_D5      39
-#define CAM_PIN_D4      36
-#define CAM_PIN_D3      21
-#define CAM_PIN_D2      19
-#define CAM_PIN_D1      18
-#define CAM_PIN_D0      5
-
-#define CAM_PIN_VSYNC   25
-#define CAM_PIN_HREF    23
-#define CAM_PIN_PCLK    22
-
-// Optional: Onboard LED flash
-#define CAM_PIN_LED     4
-
-// Example camera_config_t usage:
-// .xclk_freq_hz = 20000000,
-// .pin_pwdn     = CAM_PIN_PWDN,
-// .pin_reset    = CAM_PIN_RESET,
-// .pin_xclk     = CAM_PIN_XCLK,
-// .pin_sccb_sda = CAM_PIN_SIOD,
-// .pin_sccb_scl = CAM_PIN_SIOC,
-// .pin_d7       = CAM_PIN_D7,
-// .pin_d6       = CAM_PIN_D6,
-// .pin_d5       = CAM_PIN_D5,
-// .pin_d4       = CAM_PIN_D4,
-// .pin_d3       = CAM_PIN_D3,
-// .pin_d2       = CAM_PIN_D2,
-// .pin_d1       = CAM_PIN_D1,
-// .pin_d0       = CAM_PIN_D0,
-// .pin_vsync    = CAM_PIN_VSYNC,
-// .pin_href     = CAM_PIN_HREF,
-// .pin_pclk     = CAM_PIN_PCLK,
-
-
-
-
 /*
+ * ELEGOO ESP32-WROVER Camera V1.5 / OV2640
+ *
+ * This board is the ESP32-WROVER camera module supplied with the
+ * ELEGOO Smart Robot Car Kit V4 camera package. It is not the
+ * ESP32-S3-EYE and it is not the AI-Thinker ESP32-CAM pin map.
+ *
+ * The 4-pin VCC/GND/TX/RX connector is not used for this project.
+ * Programming/power is through the USB-C connector.
+ */
 
-//
-// Pin definitions for ESP32-S3-EYE v2.2
-//
+#define PWDN_GPIO_NUM     -1
+#define RESET_GPIO_NUM    -1
+#define XCLK_GPIO_NUM     21
+#define SIOD_GPIO_NUM     26
+#define SIOC_GPIO_NUM     27
 
-#define CAM_PIN_PWDN    -1   // No PWDN pin
-#define CAM_PIN_RESET   -1   // No RESET pin (software reset)
+#define Y9_GPIO_NUM       35
+#define Y8_GPIO_NUM       34
+#define Y7_GPIO_NUM       39
+#define Y6_GPIO_NUM       36
+#define Y5_GPIO_NUM       19
+#define Y4_GPIO_NUM       18
+#define Y3_GPIO_NUM        5
+#define Y2_GPIO_NUM        4
 
-#define CAM_PIN_XCLK    15
-#define CAM_PIN_SIOD    4
-#define CAM_PIN_SIOC    5
+#define VSYNC_GPIO_NUM    25
+#define HREF_GPIO_NUM     23
+#define PCLK_GPIO_NUM     22
 
-#define CAM_PIN_D7      16
-#define CAM_PIN_D6      17
-#define CAM_PIN_D5      18
-#define CAM_PIN_D4      12
-#define CAM_PIN_D3      10
-#define CAM_PIN_D2      8
-#define CAM_PIN_D1      9
-#define CAM_PIN_D0      11
+// Optional onboard/status LED on many WROVER camera boards.
+// Not used by the streaming-only test program.
+#define CAM_PIN_LED        2
 
-#define CAM_PIN_VSYNC   6
-#define CAM_PIN_HREF    7
-#define CAM_PIN_PCLK    13
-
-// Aliases compatible with esp-camera examples
-#define Y2_GPIO_NUM     CAM_PIN_D0
-#define Y3_GPIO_NUM     CAM_PIN_D1
-#define Y4_GPIO_NUM     CAM_PIN_D2
-#define Y5_GPIO_NUM     CAM_PIN_D3
-#define Y6_GPIO_NUM     CAM_PIN_D4
-#define Y7_GPIO_NUM     CAM_PIN_D5
-#define Y8_GPIO_NUM     CAM_PIN_D6
-#define Y9_GPIO_NUM     CAM_PIN_D7
-
-#define XCLK_GPIO_NUM   CAM_PIN_XCLK
-#define PCLK_GPIO_NUM   CAM_PIN_PCLK
-#define VSYNC_GPIO_NUM  CAM_PIN_VSYNC
-#define HREF_GPIO_NUM   CAM_PIN_HREF
-#define SIOD_GPIO_NUM   CAM_PIN_SIOD
-#define SIOC_GPIO_NUM   CAM_PIN_SIOC
-#define PWDN_GPIO_NUM   CAM_PIN_PWDN
-#define RESET_GPIO_NUM  CAM_PIN_RESET
-*/
-
-/*
-// main/camera_pins.h
-#pragma once
-
-//
-// Correct pin definitions for ESP32-S3-EYE v2.2
-// Matches Espressif schematic + working IDF examples
-//
-
-#define CAM_PIN_PWDN    -1   // No PWDN pin
-#define CAM_PIN_RESET   -1   // No RESET pin (software reset)
-
-#define CAM_PIN_XCLK    15
-#define CAM_PIN_SIOD    4
-#define CAM_PIN_SIOC    5
-
-#define CAM_PIN_D7      16
-#define CAM_PIN_D6      17
-#define CAM_PIN_D5      18
-#define CAM_PIN_D4      12
-#define CAM_PIN_D3      10
-#define CAM_PIN_D2      8
-#define CAM_PIN_D1      9
-#define CAM_PIN_D0      11
-
-#define CAM_PIN_VSYNC   6
-#define CAM_PIN_HREF    7
-#define CAM_PIN_PCLK    13
-
-//
-// Optional aliases (maintains compatibility with esp-camera examples)
-//
-
-#define Y2_GPIO_NUM     CAM_PIN_D0
-#define Y3_GPIO_NUM     CAM_PIN_D1
-#define Y4_GPIO_NUM     CAM_PIN_D2
-#define Y5_GPIO_NUM     CAM_PIN_D3
-#define Y6_GPIO_NUM     CAM_PIN_D4
-#define Y7_GPIO_NUM     CAM_PIN_D5
-#define Y8_GPIO_NUM     CAM_PIN_D6
-#define Y9_GPIO_NUM     CAM_PIN_D7
-
-#define XCLK_GPIO_NUM   CAM_PIN_XCLK
-#define PCLK_GPIO_NUM   CAM_PIN_PCLK
-#define VSYNC_GPIO_NUM  CAM_PIN_VSYNC
-#define HREF_GPIO_NUM   CAM_PIN_HREF
-#define SIOD_GPIO_NUM   CAM_PIN_SIOD
-#define SIOC_GPIO_NUM   CAM_PIN_SIOC
-#define PWDN_GPIO_NUM   CAM_PIN_PWDN
-#define RESET_GPIO_NUM  CAM_PIN_RESET
-*/
+// Backward-compatible aliases used by older local files.
+#define CAM_PIN_PWDN       PWDN_GPIO_NUM
+#define CAM_PIN_RESET      RESET_GPIO_NUM
+#define CAM_PIN_XCLK       XCLK_GPIO_NUM
+#define CAM_PIN_SIOD       SIOD_GPIO_NUM
+#define CAM_PIN_SIOC       SIOC_GPIO_NUM
+#define CAM_PIN_D7         Y9_GPIO_NUM
+#define CAM_PIN_D6         Y8_GPIO_NUM
+#define CAM_PIN_D5         Y7_GPIO_NUM
+#define CAM_PIN_D4         Y6_GPIO_NUM
+#define CAM_PIN_D3         Y5_GPIO_NUM
+#define CAM_PIN_D2         Y4_GPIO_NUM
+#define CAM_PIN_D1         Y3_GPIO_NUM
+#define CAM_PIN_D0         Y2_GPIO_NUM
+#define CAM_PIN_VSYNC      VSYNC_GPIO_NUM
+#define CAM_PIN_HREF       HREF_GPIO_NUM
+#define CAM_PIN_PCLK       PCLK_GPIO_NUM
